@@ -1,9 +1,7 @@
-const App = () => {
+export const App = () => {
 	return (
-		<main className="flex justify-center items-center bg-gradient-to-br from-sky-400 via-rose-400 to-lime-400 h-[100vh] w-full">
+		<main className="flex justify-center items-center bg-gradient-to-br from-purple-500 via-teal-500 to-blue-500 h-[100vh] w-full">
 			Hello world
 		</main>
 	);
 };
-
-export default App;
