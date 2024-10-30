@@ -35,7 +35,7 @@ export const Tile = ({
         <h4 className="ml-1">{title}</h4>
       </div>
       <h3 className="mt-2 text-lg">{info}</h3>
-      <p className="text-xs font-bold">{description}</p>
+      <p className="text-xs mt-4 font-bold">{description}</p>
     </article>
   );
 };
