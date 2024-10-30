@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Logo } from "../components/Logo";
 import type { optionType } from "../types";
 import { Search } from "../components/Search";
 
@@ -56,15 +55,16 @@ export const Main = () => {
 	}, [city]);
 
 	return (
-		<div className="flex flex-col items-center justify-center h-screen">
-			<Logo />
-			<Search
-				location={location}
-				options={options}
-				onInputChange={onInputChange}
-				onOptionSelect={onOptionSelect}
-				onSubmit={onSubmit}
-			/>
-		</div>
+		<main className="flex justify-center items-center h-[100vh] w-full">
+			<div className="flex flex-col items-center justify-center h-screen">
+				<Search
+					location={location}
+					options={options}
+					onInputChange={onInputChange}
+					onOptionSelect={onOptionSelect}
+					onSubmit={onSubmit}
+				/>
+			</div>
+		</main>
 	);
 };
