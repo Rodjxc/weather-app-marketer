@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import type { optionType } from "../types";
+import type { optionType, forecastType } from "../types";
 
 export const useForecast = () => {
 	const [location, setLocation] = useState<string>("");
@@ -11,7 +11,7 @@ export const useForecast = () => {
 	const [city, setCity] = useState<optionType | null>(null);
 	// the selected location
 
-	const [forecast, setForecast] = useState<null>(null);
+	const [forecast, setForecast] = useState<forecastType | null>(null);
 	// the forecast for the selected location
 
 	const getSearchOptions = (value: string) => {
@@ -38,10 +38,14 @@ export const useForecast = () => {
 
 	const getForecast = (city: optionType) => {
 		fetch(
-			`https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&units=metric&appid=${import.meta.env.VITE_API_KEY}`,
+			`https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&units=metric&appid=${import.meta.env.VITE_API_KEY}`,
 		)
 			.then((res) => res.json())
-			.then((data) => setForecast(data));
+			.then((data) => {
+				const forecastData = { ...data.city, list: data.list.slice(0, 7) };
+				//we'll only get the first 7 days of the forecast
+				setForecast(forecastData);
+			});
 	};
 
 	const onSubmit = () => {
