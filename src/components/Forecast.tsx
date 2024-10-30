@@ -40,7 +40,6 @@ export const Forecast = ({ data }: Props): JSX.Element => {
           {data.list.map((item, i) => (
             <div
               className="inline-block text-center w-[50px] flex-shrink-0"
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               key={i}
             >
               <p className="text-sm">
