@@ -6,6 +6,7 @@ export const Main = () => {
 	const [location, setLocation] = useState<string>("");
 	const [options, setOptions] = useState<optionType[]>([]);
 	const [city, setCity] = useState<optionType | null>(null);
+	const [forecast, setForecast] = useState<null>(null);
 
 	const getSearchOptions = (value: string) => {
 		fetch(
@@ -33,9 +34,7 @@ export const Main = () => {
 			`https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&units=metric&appid=${import.meta.env.VITE_API_KEY}`,
 		)
 			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-			});
+			.then((data) => setForecast(data));
 	};
 
 	const onSubmit = () => {
@@ -57,13 +56,17 @@ export const Main = () => {
 	return (
 		<main className="flex justify-center items-center h-[100vh] w-full">
 			<div className="flex flex-col items-center justify-center h-screen">
-				<Search
-					location={location}
-					options={options}
-					onInputChange={onInputChange}
-					onOptionSelect={onOptionSelect}
-					onSubmit={onSubmit}
-				/>
+				{forecast ? (
+					"We have a forecast"
+				) : (
+					<Search
+						location={location}
+						options={options}
+						onInputChange={onInputChange}
+						onOptionSelect={onOptionSelect}
+						onSubmit={onSubmit}
+					/>
+				)}
 			</div>
 		</main>
 	);
