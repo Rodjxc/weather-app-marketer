@@ -1,9 +1,10 @@
-import React from "react";
+import { Logo } from "../components/Logo";
 
 export const Main = () => {
 	return (
 		<main className="flex justify-center items-center h-[100vh] w-full">
 			<section className="w-full md:max-w-[500px] p-4 flex flex-col text-center items-center justify-center md:px-10 lg:p-24 h-full lg:h-[500px] bg-white bg-opacity-20 backdrop-blur-lg rounded drop-shadow-lg text-zinc-200">
+				<Logo />
 				<h1 className="text-4xl font-thin">
 					Weather <span className="font-black">Forecast</span>
 				</h1>
