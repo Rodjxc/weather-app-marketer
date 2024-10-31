@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { useGeolocation } from "../../hooks/useGeolocation";
 
-type NavbarProps = {
-  coords: { lat: number; lon: number } | null;
-  error: string | null;
-};
-
-export const Navbar = ({ coords, error }: NavbarProps): JSX.Element => {
+export const Navbar = (): JSX.Element => {
   const [locationName, setLocationName] = useState("Your Location");
+  const { coords, error } = useGeolocation();
   const [country, setCountry] = useState<string | null>(null);
   const [temperature, setTemperature] = useState<number | null>(null);
 

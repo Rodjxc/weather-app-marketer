@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import type { optionType } from "../types";
 import { useAutocomplete } from "./useAutocomplete";
 import { useGeolocation } from "./useGeolocation";
@@ -19,12 +18,6 @@ export const useForecast = () => {
       fetchWeather(coords.lat, coords.lon);
     }
   };
-
-  useEffect(() => {
-    if (coords) {
-      fetchWeather(coords.lat, coords.lon);
-    }
-  });
 
   return {
     location,
