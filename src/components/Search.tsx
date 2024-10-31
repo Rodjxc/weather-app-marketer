@@ -45,7 +45,6 @@ export const Search = ({
         >
           Search
         </button>
-        {/* Position dropdown directly under the input */}
         {options.length > 0 && (
           <ul className="absolute top-full left-0 mt-1 w-full bg-white rounded-b-md text-gray-600 shadow-lg max-h-48 overflow-y-auto z-10">
             {options.map((option: optionType, index: number) => (

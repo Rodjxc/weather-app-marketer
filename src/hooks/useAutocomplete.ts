@@ -24,5 +24,5 @@ export const useAutocomplete = () => {
     getSearchOptions(value.trim());
   };
 
-  return { location, options, onInputChange, setLocation };
+  return { location, options, onInputChange, setLocation, setOptions };
 };
