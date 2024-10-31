@@ -1,4 +1,10 @@
-import { getSunTime, getWindDirection } from "../helpers";
+import {
+  getHumidityValue,
+  getPop,
+  getSunTime,
+  getVisibilityValue,
+  getWindDirection,
+} from "../helpers";
 import type { forecastType } from "../types";
 import Sunrise from "./Icons/Sunrise";
 import Sunset from "./Icons/Sunset";
@@ -38,7 +44,7 @@ export const Forecast = ({ data }: Props): JSX.Element => {
             <Degree temp={Math.floor(today.main.temp_min)} />
           </p>
         </section>
-        <section className="flex overflow-x-scroll mt-4 pb-2 mb-5">
+        <section className="flex overflow-x-scroll mt-4 pb-2 mb-5 bg-gray-400 ">
           {data.list.map((item, i) => (
             <div
               className="inline-block text-center w-[50px] flex-shrink-0"
@@ -59,11 +65,12 @@ export const Forecast = ({ data }: Props): JSX.Element => {
         </section>
         <section className="flex  flex-wrap justify-between text-zinc-400">
           <div className="w-[140px] text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-lg rounded drop-shadow-lg py-4 mb-5 text-white">
-            <Sunrise /> <span className="mt-2">{getSunTime(data.sunrise)}</span>
+            <Sunrise />{" "}
+            <span className="mt-2">Sunrise {getSunTime(data.sunrise)}</span>
           </div>
           <div className="w-[140px] text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-lg rounded drop-shadow-lg py-4 mb-5 text-white">
             <Sunset />
-            <span className="mt-2">{getSunTime(data.sunset)}</span>
+            <span className="mt-2">Sunset {getSunTime(data.sunset)}</span>
           </div>
 
           <Tile
@@ -83,6 +90,32 @@ export const Forecast = ({ data }: Props): JSX.Element => {
                 ? "colder"
                 : "warmer"
             } `}
+          />
+          <Tile
+            icon="humidity"
+            title="Humidity"
+            info={`${today.main.humidity}%`}
+            description={getHumidityValue(today.main.humidity)}
+          />
+          <Tile
+            icon="pop"
+            title="Precipitation"
+            info={`${Math.round(today.pop)} mm`}
+            description={`${getPop(today.pop)}, clouds at ${today.clouds.all}%`}
+          />
+          <Tile
+            icon="pressure"
+            title="Pressure"
+            info={`${today.main.pressure} hPa`}
+            description={`${
+              Math.round(today.main.pressure) < 1013 ? "Lower" : "Higher"
+            } than standard`}
+          />
+          <Tile
+            icon="visibility"
+            title="Visibility"
+            info={`${(today.visibility / 1000).toFixed()} km`}
+            description={`${getVisibilityValue(today.visibility)} `}
           />
         </section>
       </div>
