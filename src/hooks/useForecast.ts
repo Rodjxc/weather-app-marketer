@@ -11,17 +11,25 @@ export const useForecast = () => {
     lat: number;
     lon: number;
   } | null>(null);
+  const [locationError, setLocationError] = useState<string | null>(null);
 
   const onOptionSelect = (option: optionType) => {
     setLocation(option.name);
     setSelectedCoords({ lat: option.lat, lon: option.lon });
     setOptions([]);
+    setLocationError(null); // Clear any previous error on valid selection
   };
 
   const onSubmit = () => {
-    if (selectedCoords) {
-      fetchWeather(selectedCoords.lat, selectedCoords.lon);
+    // If no location was selected or options list is empty, set error
+    if (!selectedCoords) {
+      setLocationError("Please select a valid location from the list.");
+      return;
     }
+
+    // If selectedCoords are available, clear error and fetch weather
+    fetchWeather(selectedCoords.lat, selectedCoords.lon);
+    setLocationError(null);
   };
 
   return {
@@ -31,5 +39,6 @@ export const useForecast = () => {
     onInputChange,
     onOptionSelect,
     onSubmit,
+    locationError,
   };
 };

@@ -7,6 +7,7 @@ type SearchInputProps = {
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onOptionSelect: (option: optionType) => void;
   onSubmit: () => void;
+  locationError: string | null;
 };
 
 export const SearchInput = ({
@@ -15,6 +16,7 @@ export const SearchInput = ({
   onInputChange,
   onOptionSelect,
   onSubmit,
+  locationError,
 }: SearchInputProps): JSX.Element => {
   return (
     <div className="relative w-full max-w-[600px]">
@@ -48,6 +50,11 @@ export const SearchInput = ({
             </li>
           ))}
         </ul>
+      )}
+      {locationError && (
+        <p className="text-red-500 text-xs mt-1">
+          We couldn't find that location. Please check again
+        </p>
       )}
     </div>
   );

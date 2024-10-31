@@ -10,6 +10,7 @@ type NavbarProps = {
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onOptionSelect: (option: optionType) => void;
   onSubmit: () => void;
+  locationError: string | null;
 };
 
 export const Navbar = ({
@@ -18,10 +19,11 @@ export const Navbar = ({
   onInputChange,
   onOptionSelect,
   onSubmit,
+  locationError,
 }: NavbarProps): JSX.Element => {
-  const { coords, error } = useGeolocation();
+  const { coords, error: geolocationError } = useGeolocation();
   const [locationName, setLocationName] = useState("Your Location");
-  const [countryName, setCountryName] = useState("");
+  const [countryCode, setCountryCode] = useState("");
   const [temperature, setTemperature] = useState<number | null>(null);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ export const Navbar = ({
         .then((res) => res.json())
         .then((data) => {
           setLocationName(data.city.name);
-          setCountryName(data.city.country); // Set the country name
+          setCountryCode(data.city.country);
           setTemperature(Math.round(data.list[0].main.temp));
         })
         .catch(() => {
@@ -44,26 +46,28 @@ export const Navbar = ({
   }, [coords]);
 
   return (
-    <nav className="w-full bg-navbar text-white p-4 flex justify-center items-center shadow-md">
-      <div className="text-lg font-semibold mr-auto">
+    <nav className="w-full bg-navbar text-white p-4 flex items-center shadow-md justify-between">
+      {/* Left side: Location and Temperature */}
+      <div className="text-lg font-semibold flex items-center space-x-2">
         <FaMapMarkerAlt className="inline-block mr-1" />
-        {error || `${locationName}, ${countryName}`}{" "}
-        {/* Display city and country */}
+        <span>
+          {geolocationError ? "Location Unavailable" : `${locationName}, `}
+          {countryCode && <span className="font-thin">{countryCode} -</span>}
+        </span>
+        {temperature !== null && <span>{temperature}°C</span>}
       </div>
 
-      <div className="mx-4">
+      {/* Right side: Search Input */}
+      <div>
         <SearchInput
           location={location}
           options={options}
           onInputChange={onInputChange}
           onOptionSelect={onOptionSelect}
           onSubmit={onSubmit}
+          locationError={locationError}
         />
       </div>
-
-      {temperature !== null && (
-        <div className="text-lg font-semibold ml-auto">{temperature}°C</div>
-      )}
     </nav>
   );
 };

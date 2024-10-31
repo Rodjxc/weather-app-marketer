@@ -11,20 +11,20 @@ export const Main = () => {
     onInputChange,
     onOptionSelect,
     onSubmit,
+    locationError,
   } = useForecast();
 
   return (
     <main className="flex flex-col items-center justify-start min-h-screen space-y-8">
-      {/* Pass search-related props to Navbar */}
       <Navbar
         location={location}
         options={options}
         onInputChange={onInputChange}
         onOptionSelect={onOptionSelect}
         onSubmit={onSubmit}
+        locationError={locationError}
       />
 
-      {/* Conditionally render Search or Forecast */}
       {!forecast ? (
         <Search
           location={location}
