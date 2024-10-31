@@ -13,6 +13,7 @@ export const useForecast = () => {
 
   const [forecast, setForecast] = useState<forecastType | null>(null);
   // the forecast for the selected location
+  const [error, setError] = useState<string | null>(null);
 
   const getSearchOptions = (value: string) => {
     fetch(
@@ -53,8 +54,12 @@ export const useForecast = () => {
   };
 
   const onSubmit = () => {
-    if (!city) return;
-    getForecast(city);
+    if (!city && options.length === 0) {
+      setError("No matching cities found. Please try a different location.");
+    } else {
+      setError(null); // Clear any previous errors
+      if (city) getForecast(city); // Only fetch if a city is selected
+    }
   };
 
   const onOptionSelect = (option: optionType) => {
@@ -70,6 +75,7 @@ export const useForecast = () => {
 
   return {
     location,
+    error,
     options,
     forecast,
     onInputChange,
