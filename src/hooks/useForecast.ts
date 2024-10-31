@@ -29,13 +29,12 @@ export const useForecast = () => {
   // we search for the location using the API
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
-    // We trim upfront so the value doesn't have trailing spaces
+    const value = e.target.value;
     setLocation(value);
 
-    if (value === "") return;
+    if (value.trim() === "") return; // Only skip if the trimmed value is entirely empty
 
-    getSearchOptions(value);
+    getSearchOptions(value.trim()); // Trim only before sending the request
   };
 
   const getForecast = (city: optionType) => {
