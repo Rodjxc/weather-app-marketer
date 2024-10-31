@@ -21,10 +21,9 @@ export const Navbar = ({
   onSubmit,
   locationError,
 }: NavbarProps): JSX.Element => {
-  const { coords, error: geolocationError } = useGeolocation();
+  const { coords, error } = useGeolocation();
   const [locationName, setLocationName] = useState("Your Location");
-  const [countryCode, setCountryCode] = useState("");
-  const [temperature, setTemperature] = useState<number | null>(null);
+  const [countryName, setCountryName] = useState("");
 
   useEffect(() => {
     if (coords) {
@@ -36,8 +35,7 @@ export const Navbar = ({
         .then((res) => res.json())
         .then((data) => {
           setLocationName(data.city.name);
-          setCountryCode(data.city.country);
-          setTemperature(Math.round(data.list[0].main.temp));
+          setCountryName(data.city.country);
         })
         .catch(() => {
           console.error("Unable to retrieve weather data for your location.");
@@ -46,19 +44,13 @@ export const Navbar = ({
   }, [coords]);
 
   return (
-    <nav className="w-full bg-navbar text-white p-4 flex items-center shadow-md justify-between">
-      {/* Left side: Location and Temperature */}
-      <div className="text-lg font-semibold flex items-center space-x-2">
+    <nav className="w-full bg-navbar text-white p-4 flex justify-center items-center shadow-md">
+      <div className="text-lg font-semibold mr-auto">
         <FaMapMarkerAlt className="inline-block mr-1" />
-        <span>
-          {geolocationError ? "Location Unavailable" : `${locationName}, `}
-          {countryCode && <span className="font-thin">{countryCode} -</span>}
-        </span>
-        {temperature !== null && <span>{temperature}°C</span>}
+        {error || `${locationName}, ${countryName}`}{" "}
       </div>
 
-      {/* Right side: Search Input */}
-      <div>
+      <div className="mx-4">
         <SearchInput
           location={location}
           options={options}

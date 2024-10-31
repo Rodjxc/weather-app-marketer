@@ -1,5 +1,6 @@
 import React from "react";
 import type { optionType } from "../types";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 type SearchInputProps = {
   location: string;
@@ -31,9 +32,11 @@ export const SearchInput = ({
         <button
           type="button"
           onClick={onSubmit}
-          className="rounded-r-md border-2 border-zinc-100 hover:bg-blue-400 hover:text-black px-2 py-2 cursor-pointer"
+          title="Search"
+          aria-label="Search for location"
+          className="rounded-r-md border-2 border-zinc-100 hover:bg-zinc-400 hover:text-black px-3 py-3 cursor-pointer"
         >
-          Search
+          <FaMagnifyingGlass />
         </button>
       </div>
       {options.length > 0 && (
