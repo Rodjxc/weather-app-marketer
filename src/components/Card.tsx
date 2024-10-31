@@ -41,16 +41,12 @@ export const Card = (): JSX.Element => {
       <h1 className="text-4xl font-thin">
         Weather <span className="font-black">Forecast</span>
       </h1>
-      <p className="text-sm mt-8">
-        Enter a place you want to know the weather of and select an option from
-        the dropdown
-      </p>
 
       {/* Display current location's weather */}
       {currentWeather && (
         <div className="mt-4 flex flex-col items-center space-y-2">
           <p className="text-xl font-semibold">
-            The weather now in: {currentWeather.location},{" "}
+            Your location: {currentWeather.location},{" "}
             <span className="font-thin">{currentWeather.country}</span>
           </p>
           <img

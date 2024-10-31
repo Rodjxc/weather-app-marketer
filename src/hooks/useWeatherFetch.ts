@@ -12,7 +12,7 @@ export const useWeatherFetch = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        const forecastData = { ...data.city, list: data.list.slice(0, 7) };
+        const forecastData = { ...data.city, list: data.list.slice(0, 16) };
         setForecast(forecastData);
       })
       .catch((error) => console.log("Error fetching weather data:", error));

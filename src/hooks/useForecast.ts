@@ -23,7 +23,7 @@ export const useForecast = () => {
   const onSubmit = () => {
     // If no location was selected or options list is empty, set error
     if (!selectedCoords) {
-      setLocationError("Please select a valid location from the list.");
+      setLocationError("Please select a valid location from the list");
       return;
     }
 

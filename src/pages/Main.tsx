@@ -1,4 +1,4 @@
-import { Forecast } from "../components/Forecast";
+import { Forecast } from "./Forecast";
 import { Card } from "../components/Card";
 import { useForecast } from "../hooks/useForecast";
 import { Navbar } from "../components/Layout/Navbar";
