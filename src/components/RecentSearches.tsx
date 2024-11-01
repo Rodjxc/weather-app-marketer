@@ -27,7 +27,7 @@ export const RecentSearches = ({ searches }: RecentSearchesProps) => {
               {Math.round(search.list[0].main.temp)}°C
             </p>
             <img
-              src={`http://openweathermap.org/img/wn/${search.list[0].weather[0].icon}@2x.png`}
+              src={`https://openweathermap.org/img/wn/${search.list[0].weather[0].icon}@2x.png`}
               alt="Weather icon"
               className="w-12 h-12"
             />

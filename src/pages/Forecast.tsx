@@ -55,7 +55,7 @@ export const Forecast = ({ data }: Props): JSX.Element => {
                   {i === 0 ? "Now" : new Date(item.dt * 1000).getHours()}
                 </p>
                 <img
-                  src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+                  src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                   alt={item.weather[0].description}
                 />
                 <p className="text-sm font-bold">

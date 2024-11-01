@@ -47,7 +47,7 @@ export const Card = (): JSX.Element => {
             <span className="font-thin">{currentWeather.country}</span>
           </p>
           <img
-            src={`http://openweathermap.org/img/wn/${currentWeather.icon}@2x.png`}
+            src={`https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png`}
             alt="Current weather icon"
             className="w-16 h-16"
           />
