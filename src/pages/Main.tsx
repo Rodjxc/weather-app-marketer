@@ -30,7 +30,7 @@ export const Main = () => {
         locationError={locationError}
       />
       {!forecast ? (
-        <Card />
+        <Card recentSearches={recentSearches} />
       ) : (
         <>
           <Forecast data={forecast} />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { useGeolocation } from "../hooks/useGeolocation";
+import type { forecastType } from "../types";
 
 type CurrentWeatherType = {
   location: string;
@@ -9,7 +10,11 @@ type CurrentWeatherType = {
   icon: string;
 };
 
-export const Card = (): JSX.Element => {
+type CardProps = {
+  recentSearches: forecastType[];
+};
+
+export const Card = ({ recentSearches }: CardProps): JSX.Element => {
   const { coords } = useGeolocation();
   const [currentWeather, setCurrentWeather] =
     useState<CurrentWeatherType | null>(null);
@@ -54,6 +59,19 @@ export const Card = (): JSX.Element => {
           <p className="text-2xl font-bold">{currentWeather.temp}°C</p>
         </div>
       )}
+
+      {/* Display recent searches */}
+      <div className="mt-6">
+        <h2 className="text-lg font-semibold mb-2">Recent Searches</h2>
+        <ul className="space-y-2">
+          {recentSearches.map((search, index) => (
+            <li key={index} className="text-sm">
+              <span className="font-bold">{search.name}</span>, {search.country}{" "}
+              - {Math.round(search.list[0].main.temp)}°C
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 };
