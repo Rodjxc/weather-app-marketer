@@ -9,8 +9,10 @@ export const RecentSearches = ({ searches }: RecentSearchesProps) => {
   if (searches.length === 0) return null;
 
   return (
-    <div className="mt-8 w-full max-w-[900px]">
-      <h3 className="text-xl font-semibold mb-6 text-white">Recent Searches</h3>
+    <div className="mt-8  mx-auto w-full max-w-[900px]">
+      <h3 className="text-xl font-semibold mb-6 text-center text-white">
+        Recent Searches
+      </h3>
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {searches.map((search, index) => (
           <div

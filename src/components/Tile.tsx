@@ -8,7 +8,7 @@ import Wind from "./Icons/Wind";
 type Props = {
   icon: "wind" | "humidity" | "pressure" | "visibility" | "pop" | "feels";
   title: string;
-  info: string | JSX.Element; //because it can be also a Degree component withthe temp
+  info: string | JSX.Element;
   description: string;
 };
 
@@ -29,13 +29,15 @@ export const Tile = ({
 }: Props): JSX.Element => {
   const Icon = icons[icon];
   return (
-    <article className="w-[140px] h-[130px] p-4 text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-lg rounded drop-shadow-lg py-4 mb-5 text-white">
-      <div className="flex items-center text-sm font-bold">
+    <article className="p-4 text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-lg rounded drop-shadow-lg mb-5 text-white">
+      <div className="flex items-center text-sm font-bold mb-1">
         <Icon />
         <h4 className="ml-1">{title}</h4>
       </div>
       <h3 className="mt-2 text-lg">{info}</h3>
-      <p className="text-xs mt-4 font-bold">{description}</p>
+      <p className="text-xs mt-2 font-bold text-center break-words">
+        {description}
+      </p>
     </article>
   );
 };
