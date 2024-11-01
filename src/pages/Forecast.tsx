@@ -26,7 +26,6 @@ export const Forecast = ({ data }: Props): JSX.Element => {
 
   return (
     <div className="w-full max-w-[1200px] py-6 px-4 lg:px-8 bg-white bg-opacity-20 backdrop-blur-lg rounded drop-shadow-lg">
-      {/* Main Horizontal Flex Container */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:space-x-8">
         {/* Left Section: City and Forecast Info */}
         <div className="flex flex-col w-full lg:w-1/3">
@@ -67,7 +66,7 @@ export const Forecast = ({ data }: Props): JSX.Element => {
           </section>
         </div>
 
-        {/* Center Section: Sunrise and Sunset in a single flex column */}
+        {/* Center Section - Sunrise/Sunset */}
         <div className="grid grid-cols-2 p-4 lg:grid-cols-1 gap-4 lg:gap-6 w-full lg:w-1/4 mb-4 sm:mb-6">
           <div className="w-full h-[130px] flex flex-col justify-center items-center text-xs font-bold bg-white/20 backdrop-blur-lg rounded-lg p-4">
             <Sunrise />
@@ -79,7 +78,7 @@ export const Forecast = ({ data }: Props): JSX.Element => {
           </div>
         </div>
 
-        {/* Right Section: Tile Grid in 3 columns and 2 rows on desktop */}
+        {/* Right Section. I kept it here due to the complexity of using external dependencies and JS functions */}
         <div className="grid p-4 grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-4 w-full lg:w-1/2">
           <Tile
             icon="wind"

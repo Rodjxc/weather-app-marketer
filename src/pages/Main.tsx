@@ -3,6 +3,7 @@ import { Card } from "../components/Card";
 import { useForecast } from "../hooks/useForecast";
 import { Navbar } from "../components/Layout/Navbar";
 import { RecentSearches } from "../components/RecentSearches";
+import { Footer } from "../components/Layout/Footer";
 
 export const Main = () => {
   const {
@@ -34,6 +35,7 @@ export const Main = () => {
           <RecentSearches searches={recentSearches} />
         </>
       )}
+      <Footer />
     </main>
   );
 };

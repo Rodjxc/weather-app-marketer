@@ -29,7 +29,7 @@ export const Tile = ({
 }: Props): JSX.Element => {
   const Icon = icons[icon];
   return (
-    <article className="w-[140px] h-[130px] text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-lg rounded drop-shadow-lg py-4 mb-5 text-white">
+    <article className="w-[140px] h-[130px] p-4 text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-lg rounded drop-shadow-lg py-4 mb-5 text-white">
       <div className="flex items-center text-sm font-bold">
         <Icon />
         <h4 className="ml-1">{title}</h4>
