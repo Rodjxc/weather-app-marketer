@@ -9,6 +9,7 @@ type NavbarProps = {
   onOptionSelect: (option: optionType) => void;
   onSubmit: () => void;
   locationError: string | null;
+  resetForecast: () => void;
 };
 
 export const Navbar = ({
@@ -16,13 +17,14 @@ export const Navbar = ({
   options,
   onInputChange,
   onOptionSelect,
+  resetForecast,
   onSubmit,
   locationError,
 }: NavbarProps): JSX.Element => {
   return (
     <nav className="w-full bg-navbar text-white flex justify-center items-center shadow-md">
       <div className="text-lg font-semibold mr-auto">
-        <Logo />
+        <Logo onClick={resetForecast} />
       </div>
 
       <div className="mx-4">

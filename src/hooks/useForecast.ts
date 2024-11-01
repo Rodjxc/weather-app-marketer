@@ -22,6 +22,8 @@ export const useForecast = () => {
     setLocationError(null);
   };
 
+  const resetForecast = () => setForecast(null);
+
   const onSubmit = async () => {
     setLocationError(null);
 
@@ -50,6 +52,7 @@ export const useForecast = () => {
     onInputChange,
     onOptionSelect,
     onSubmit,
+    resetForecast,
     locationError,
   };
 };

@@ -12,6 +12,7 @@ export const Main = () => {
     options,
     recentSearches,
     onInputChange,
+    resetForecast,
     onOptionSelect,
     onSubmit,
     locationError,
@@ -25,6 +26,7 @@ export const Main = () => {
         onInputChange={onInputChange}
         onOptionSelect={onOptionSelect}
         onSubmit={onSubmit}
+        resetForecast={resetForecast}
         locationError={locationError}
       />
       {!forecast ? (
