@@ -15,7 +15,6 @@ export const Card = (): JSX.Element => {
     useState<CurrentWeatherType | null>(null);
 
   useEffect(() => {
-    // Fetch the weather for the current location when coordinates are available
     if (coords) {
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${
@@ -41,8 +40,6 @@ export const Card = (): JSX.Element => {
       <h1 className="text-4xl font-thin">
         Weather <span className="font-black">Forecast</span>
       </h1>
-
-      {/* Display current location's weather */}
       {currentWeather && (
         <div className="mt-4 flex flex-col items-center space-y-2">
           <p className="text-xl font-semibold">

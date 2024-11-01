@@ -2,12 +2,14 @@ import { Forecast } from "./Forecast";
 import { Card } from "../components/Card";
 import { useForecast } from "../hooks/useForecast";
 import { Navbar } from "../components/Layout/Navbar";
+import { RecentSearches } from "../components/RecentSearches";
 
 export const Main = () => {
   const {
     forecast,
     location,
     options,
+    recentSearches,
     onInputChange,
     onOptionSelect,
     onSubmit,
@@ -24,8 +26,14 @@ export const Main = () => {
         onSubmit={onSubmit}
         locationError={locationError}
       />
-
-      {!forecast ? <Card /> : <Forecast data={forecast} />}
+      {!forecast ? (
+        <Card />
+      ) : (
+        <>
+          <Forecast data={forecast} />
+          <RecentSearches searches={recentSearches} />
+        </>
+      )}
     </main>
   );
 };
