@@ -9,7 +9,10 @@ export const RecentSearches = ({ searches }: RecentSearchesProps) => {
   if (searches.length === 0) return null;
 
   return (
-    <div className="mt-8  mx-auto w-full max-w-[900px]">
+    <div
+      className="mt-8 mx-auto w-full max-w-[900px]"
+      aria-label="Recent Searches"
+    >
       <h3 className="text-xl font-semibold mb-6 text-center text-white">
         Recent Searches
       </h3>
@@ -20,7 +23,7 @@ export const RecentSearches = ({ searches }: RecentSearchesProps) => {
             className="p-4 bg-white bg-opacity-10 backdrop-blur-lg text-white rounded-lg shadow-lg flex flex-col items-center"
           >
             <div className="flex items-center space-x-2">
-              <FaMapMarkerAlt className="text-blue-400" />
+              <FaMapMarkerAlt className="text-blue-400" aria-hidden="true" />
               <h4 className="text-lg font-bold">
                 {search.name}, {search.country}
               </h4>
@@ -30,7 +33,7 @@ export const RecentSearches = ({ searches }: RecentSearchesProps) => {
             </p>
             <img
               src={`https://openweathermap.org/img/wn/${search.list[0].weather[0].icon}@2x.png`}
-              alt="Weather icon"
+              alt={`Weather icon: ${search.list[0].weather[0].description}`}
               className="w-12 h-12"
             />
             <p className="text-sm text-gray-300 mt-2 capitalize">

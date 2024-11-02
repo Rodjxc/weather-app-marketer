@@ -46,15 +46,20 @@ export const SearchInput = ({
           value={location}
           onChange={(e) => {
             onInputChange(e);
-            setActiveOptionIndex(-1); // Reset index when input changes
+            setActiveOptionIndex(-1);
           }}
           onKeyDown={handleKeyDown}
           placeholder="Search for a location..."
           className="w-full px-10 py-2 rounded-md border-2 border-white text-black"
+          aria-label="Search for a location"
+          aria-autocomplete="list"
         />
       </div>
       {options.length > 0 && location && (
-        <ul className="absolute top-12 left-0 w-full bg-white rounded-b-md shadow-md text-gray-800 z-10">
+        <ul
+          aria-label="Suggested locations"
+          className="absolute top-12 left-0 w-full bg-white rounded-b-md shadow-md text-gray-800 z-10"
+        >
           {options.map((option, index) => (
             <li key={index}>
               <button
