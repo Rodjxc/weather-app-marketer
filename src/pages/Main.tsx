@@ -14,8 +14,6 @@ export const Main = () => {
     onInputChange,
     resetForecast,
     onOptionSelect,
-    onSubmit,
-    locationError,
   } = useForecast();
 
   return (
@@ -25,9 +23,7 @@ export const Main = () => {
         options={options}
         onInputChange={onInputChange}
         onOptionSelect={onOptionSelect}
-        onSubmit={onSubmit}
         resetForecast={resetForecast}
-        locationError={locationError}
       />
       {!forecast ? (
         <Card recentSearches={recentSearches} />

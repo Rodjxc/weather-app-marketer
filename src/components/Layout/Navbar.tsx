@@ -7,8 +7,6 @@ type NavbarProps = {
   options: optionType[];
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onOptionSelect: (option: optionType) => void;
-  onSubmit: () => void;
-  locationError: string | null;
   resetForecast: () => void;
 };
 
@@ -18,8 +16,6 @@ export const Navbar = ({
   onInputChange,
   onOptionSelect,
   resetForecast,
-  onSubmit,
-  locationError,
 }: NavbarProps): JSX.Element => {
   return (
     <nav className="w-full bg-navbar text-white flex justify-center items-center shadow-md">
@@ -33,8 +29,6 @@ export const Navbar = ({
           options={options}
           onInputChange={onInputChange}
           onOptionSelect={onOptionSelect}
-          onSubmit={onSubmit}
-          locationError={locationError}
         />
       </div>
     </nav>

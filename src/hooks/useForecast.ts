@@ -6,7 +6,6 @@ import { useWeatherFetch } from "./useWeatherFetch";
 export const useForecast = () => {
   const { location, options, onInputChange, setLocation, setOptions } =
     useAutocomplete();
-  const [locationError, setLocationError] = useState<string | null>(null);
   const [recentSearches, setRecentSearches] = useState<forecastType[]>([]);
 
   const [selectedLocation, setSelectedLocation] = useState<{
@@ -29,7 +28,6 @@ export const useForecast = () => {
       forecast: null,
     });
     setOptions([]);
-    setLocationError(null);
   };
 
   useEffect(() => {
@@ -42,7 +40,6 @@ export const useForecast = () => {
 
   const resetForecast = () => {
     setSelectedLocation({ coords: null, forecast: null });
-    setLocationError(null);
   };
 
   return {
@@ -53,6 +50,5 @@ export const useForecast = () => {
     onInputChange,
     onOptionSelect,
     resetForecast,
-    locationError,
   };
 };
