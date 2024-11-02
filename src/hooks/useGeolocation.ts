@@ -22,5 +22,3 @@ export const useGeolocation = () => {
 
   return { coords, error };
 };
-
-// With this hook we can get the user's location on initial load. We then pass the coords to the navbar

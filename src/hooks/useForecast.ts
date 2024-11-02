@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { optionType, forecastType } from "../types";
 import { useAutocomplete } from "./useAutocomplete";
 import { useWeatherFetch } from "./useWeatherFetch";
@@ -6,52 +6,52 @@ import { useWeatherFetch } from "./useWeatherFetch";
 export const useForecast = () => {
   const { location, options, onInputChange, setLocation, setOptions } =
     useAutocomplete();
-  const { fetchWeather } = useWeatherFetch();
-  const [selectedCoords, setSelectedCoords] = useState<{
-    lat: number;
-    lon: number;
-  } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
-  const [forecast, setForecast] = useState<forecastType | null>(null);
   const [recentSearches, setRecentSearches] = useState<forecastType[]>([]);
+
+  const [selectedLocation, setSelectedLocation] = useState<{
+    coords: { lat: number; lon: number } | null;
+    forecast: forecastType | null;
+  }>({
+    coords: null,
+    forecast: null,
+  });
+
+  const { data: forecast } = useWeatherFetch(
+    selectedLocation.coords?.lat || 0,
+    selectedLocation.coords?.lon || 0
+  );
 
   const onOptionSelect = (option: optionType) => {
     setLocation(option.name);
-    setSelectedCoords({ lat: option.lat, lon: option.lon });
+    setSelectedLocation({
+      coords: { lat: option.lat, lon: option.lon },
+      forecast: null,
+    });
     setOptions([]);
     setLocationError(null);
   };
 
-  const resetForecast = () => setForecast(null);
+  useEffect(() => {
+    if (forecast) {
+      setSelectedLocation((prev) => ({ ...prev, forecast }));
+      setRecentSearches((prev) => [forecast, ...prev.slice(0, 4)]);
+      setLocation("");
+    }
+  }, [forecast, setLocation]);
 
-  const onSubmit = async () => {
+  const resetForecast = () => {
+    setSelectedLocation({ coords: null, forecast: null });
     setLocationError(null);
-
-    if (!selectedCoords) {
-      setLocationError("Please select a valid location from the list");
-      return;
-    }
-
-    const fetchedForecast = await fetchWeather(
-      selectedCoords.lat,
-      selectedCoords.lon
-    );
-    if (fetchedForecast) {
-      setForecast(fetchedForecast);
-      setRecentSearches((prev) => [fetchedForecast, ...prev.slice(0, 4)]); // Keep last 5 searches
-    } else {
-      setLocationError("Unable to fetch weather data. Please try again.");
-    }
   };
 
   return {
     location,
     options,
-    forecast,
+    forecast: selectedLocation.forecast,
     recentSearches,
     onInputChange,
     onOptionSelect,
-    onSubmit,
     resetForecast,
     locationError,
   };
