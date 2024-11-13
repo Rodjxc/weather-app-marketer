@@ -1,9 +1,9 @@
-import { Forecast } from "./Forecast";
-import { Card } from "../components/Card";
-import { useForecast } from "../hooks/useForecast";
-import { Navbar } from "../components/Layout/Navbar";
-import { RecentSearches } from "../components/RecentSearches";
-import { Footer } from "../components/Layout/Footer";
+import { useForecast } from "../../hooks/useForecast";
+import { Forecast } from "../../pages/Forecast";
+import { Card } from "../Card";
+import { RecentSearches } from "../RecentSearches";
+import { Footer } from "./Footer";
+import { Navbar } from "./Navbar";
 
 export const Main = () => {
   const {
